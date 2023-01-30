@@ -1,6 +1,44 @@
 @tailwind base;
 main {
-	@apply max-w-7xl relative px-4 sm:px-6 mb-16 sm:mb-24 mx-auto
+	@apply max-w-7xl relative px-4 sm:px-6  mx-auto;
 }
 @tailwind components;
 @tailwind utilities;
+
+main.slider {
+	@apply max-w-none h-screen min-w-[100vw] p-0 overflow-hidden;
+}
+
+.slider section {
+	@apply h-full w-[50vw] flex justify-center items-center  float-left;
+}
+.slider section:nth-child(1) {
+	@apply bg-sky-500 w-screen;
+}
+.slider section:nth-child(2) {
+	@apply bg-green;
+}
+.slider section:nth-child(3) {
+	@apply bg-pink-400;
+}
+
+/* element befor active slider */
+.sliderActivator {
+	z-index: 2;
+	background-color: lightblue;
+	width: 100vw;
+	height: 100vh;
+	display: none;
+	position: fixed;
+	top: 0;
+	opacity: 0.5;
+}
+.sliderActivator.enable {
+	display: block;
+}
+
+/* enable Flickity by default */
+.slider.enable:after {
+	content: "flickity";
+	display: none;
+}

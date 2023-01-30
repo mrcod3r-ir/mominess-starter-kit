@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en-US" class="scroll-smooth">
+<html lang="en-US" >
 <head>
 	<meta charset="utf-8">
 	<title>{{#if pageTitle}}{{pageTitle}}{{else}}{{ global.pageTitle }}{{/if}}</title>
@@ -17,7 +17,8 @@
 	<link rel="icon" href="/favicon.ico" sizes="any">
 	<link rel="icon" href="/icon.svg" type="image/svg+xml">
 	<link rel="apple-touch-icon" href="/icon.png">
-
+	<!-- CSS -->
+	<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 	<link rel="stylesheet" type="text/css" href="/assets/css/main.css"/>
 
 	<link rel="manifest" href="site.webmanifest">
@@ -29,9 +30,10 @@
 	
 	
 	<a class="sr-only focus:not-sr-only" href="#content">Skip to content</a>
-	{{> layout/header }}
+	
 	{{#block "body"}}{{/block}}
-	{{> layout/footer }}
+	<!-- JavaScript -->
+	<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 	<script src="/assets/js/main.js"></script>
 </body>
 </html>
