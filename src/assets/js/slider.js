@@ -38,9 +38,7 @@ const config = { attributes: true, subtree: true };
 // Callback function to execute when mutations are observed
 const callback = (mutationList, observer) => {
 	for (const mutation of mutationList) {
-		console.log(mutation);
 		if (mutation.type === "attributes") {
-			console.log(`The ${mutation.attributeName} attribute was modified.`);
 			sliderEnable = true;
 			initFlkty(mutation.target);
 			canActive = false;
@@ -64,6 +62,7 @@ const activatorElm = document.querySelector(".sliderActivator");
 
 // slider activator fn
 const activator = (e) => {
+	console.log(e);
 	if (canActive) {
 		console.log("slider activator working...");
 		if (e.deltaY > 0) {
@@ -82,6 +81,9 @@ const activator = (e) => {
 // if element exist
 if (activatorElm != null) {
 	activatorElm.addEventListener("wheel", (e) => {
+		activator(e);
+	});
+	activatorElm.addEventListener("keyup", (e) => {
 		activator(e);
 	});
 }
