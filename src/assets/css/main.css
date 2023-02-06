@@ -6,7 +6,10 @@ main {
 @tailwind utilities;
 
 main.slider {
-	@apply max-w-none h-screen min-w-[100vw] p-0 overflow-hidden w-[250vw] flex;
+	@apply max-w-none h-screen min-w-[100vw] p-0 overflow-hidden flex;
+}
+main.slider > div {
+	@apply w-full;
 }
 
 .slider section {
@@ -14,7 +17,6 @@ main.slider {
 }
 .slider section:nth-child(1) {
 	@apply bg-sky-500 w-screen;
-	transition: all linear 0.3s;
 }
 .slider section:nth-child(2) {
 	@apply bg-green;
@@ -22,66 +24,10 @@ main.slider {
 .slider section:nth-child(3) {
 	@apply bg-pink-400;
 }
-
-/* element befor active slider */
-.sliderActivator {
-	z-index: 2;
-	background-color: lightblue;
-	width: 100vw;
-	height: 100vh;
-	display: none;
-	position: fixed;
-	top: 0;
-	opacity: 0.5;
-}
-.sliderActivator.enable {
-	display: block;
+.slider section.shrink {
+	@apply !w-[60vw];
 }
 
-/* enable Flickity by default */
-/* .slider.enable:after {
-	content: "flickity";
-	display: none;
-}
-
-.slider .flickity-slider {
-	@apply transition-all ease-linear duration-300;
-} */
-
-.hScroll {
-	height: 100%;
-	white-space: nowrap;
-}
-.section {
-	height: 100vh;
-	display: inline-block;
-	vertical-align: top;
-	white-space: normal;
-	word-wrap: break-word;
-	clear: none;
-	margin: 0px -3px;
-	width: 50vw;
-	background: hotpink;
-}
-
-.row-1 {
-	background: yellow;
-	/* width: 1200px; */
-}
-
-.row-2 {
-	background: green;
-	/* width: 1400px; */
-}
-
-.row-3 {
-	/* width: 1000px; */
-	background: gray;
-}
-.row-4 {
-	/* width: 1200px; */
-	background: #77c4ff;
-}
-.row-5 {
-	/* width: 1100px; */
+.slider.animate .flickity-slider > section {
+	transition: width linear 0.2s;
 }
