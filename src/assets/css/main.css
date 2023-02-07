@@ -12,8 +12,13 @@ main.slider > div {
 	@apply w-full;
 }
 
-.slider section {
+.slider section,
+#intro {
 	@apply h-full w-[50vw] flex justify-center items-center  float-left;
+}
+#intro {
+	@apply bg-slate-400 w-screen h-full absolute z-10 bg-sky-500 w-screen;
+	transition: width linear 0.3s;
 }
 .slider section:nth-child(1) {
 	@apply bg-sky-500 w-screen;
@@ -24,7 +29,7 @@ main.slider > div {
 .slider section:nth-child(3) {
 	@apply bg-pink-400;
 }
-.slider section.shrink {
+section.shrink {
 	@apply !w-[60vw];
 }
 

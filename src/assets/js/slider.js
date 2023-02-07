@@ -1,13 +1,5 @@
 const first_section = document.querySelector("main section:first-child");
-const repositionSlider = () => {
-	const myInterval = setInterval(() => {
-		flickity_2.reposition();
-		console.log("myInterval....");
-	}, 10);
-	setTimeout(() => {
-		clearInterval(myInterval);
-	}, 210);
-};
+const intro_section = document.querySelector("section#intro");
 
 // use x and y mousewheel event data to navigate flickity
 function flickity_handle_wheel_event(
@@ -21,37 +13,38 @@ function flickity_handle_wheel_event(
 		var direction =
 			Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
 
-		// console.log("wheel scroll ", e.deltaX, e.deltaY, direction);
-
 		if (direction > 0) {
 			// next slide
 			if (
 				flkty_selected_target == 0 &&
-				first_section.classList.contains("shrink") == false
+				intro_section.classList.contains("shrink") == false
 			) {
+				console.log("next1");
 				// if is first trigger of mouse and section has not shrink class prevent next slide and add shrink class
-				// document.querySelector("main.slider").classList.add("animate");
-				first_section.classList.add("shrink");
-
-				// repositionSlider();
-				flickity_2.reposition();
+				intro_section.classList.add("shrink");
 			} else if (
 				flkty_selected_target == 0 &&
-				first_section.classList.contains("shrink") == true
+				intro_section.classList.contains("shrink") == true
 			) {
+				console.log("next2");
+				intro_section.classList.add("!hidden");
 				flickity_instance.next();
 			} else {
+				console.log("next3");
 				flickity_instance.next();
 			}
 		} else {
 			// prev slide
-
-			if (flkty_selected_target == 0) {
-				// first section must be full width
-				first_section.classList.remove("shrink");
-				// document.querySelector("main.slider").classList.remove("animate");
-				flickity_2.reposition();
-				// repositionSlider();
+			console.log("flkty_selected_target ", flkty_selected_target);
+			if (
+				flkty_selected_target == 0 &&
+				intro_section.classList.contains("!hidden")
+			) {
+				console.log("1...");
+				intro_section.classList.remove("!hidden");
+			} else if (intro_section.classList.contains("shrink")) {
+				intro_section.classList.remove("shrink");
+				console.log("2...");
 			}
 			flickity_instance.previous();
 		}
@@ -89,10 +82,14 @@ flickity_2.on("settle", function (index) {
 
 flickity_2.on("select", function (index) {
 	// console.log("Slide selected " + index);
+	// console.log(flkty_selected_target, index);
 	flickity_2_is_animating = true;
 });
 
 // detect mousewheel event within carousel element
 carousel_2.onwheel = function (e) {
+	flickity_handle_wheel_event(e, flickity_2, flickity_2_is_animating);
+};
+intro_section.onwheel = function (e) {
 	flickity_handle_wheel_event(e, flickity_2, flickity_2_is_animating);
 };
