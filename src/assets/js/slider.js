@@ -22,6 +22,7 @@ function flickity_handle_wheel_event(
 				console.log("next1");
 				// if is first trigger of mouse and section has not shrink class prevent next slide and add shrink class
 				intro_section.classList.add("shrink");
+				document.body.setAttribute("data-page", 0);
 			} else if (
 				flkty_selected_target == 0 &&
 				intro_section.classList.contains("shrink") == true
@@ -42,9 +43,11 @@ function flickity_handle_wheel_event(
 			) {
 				console.log("1...");
 				intro_section.classList.remove("!hidden");
+				document.body.setAttribute("data-page", -1);
 			} else if (intro_section.classList.contains("shrink")) {
 				intro_section.classList.remove("shrink");
 				console.log("2...");
+				document.body.setAttribute("data-page", -1);
 			}
 			flickity_instance.previous();
 		}
@@ -84,6 +87,7 @@ flickity_2.on("select", function (index) {
 	// console.log("Slide selected " + index);
 	// console.log(flkty_selected_target, index);
 	flickity_2_is_animating = true;
+	document.body.setAttribute("data-page", index);
 });
 
 // detect mousewheel event within carousel element
